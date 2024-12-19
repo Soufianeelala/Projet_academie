@@ -1,12 +1,32 @@
 <?php
 // Inclure le fichier de configuration et démarrer la session
-include('/Projet_academie/app/includes/function.php'); // Changez en fonction de votre fichier config
-
+include('../../includes/function.php'); // Changez en fonction de votre fichier config
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['userid'])) {
     header('Location: ../auth/login.php'); // Rediriger vers la page de connexion si non connecté
     exit;
+}
+
+// Vérifier si le champ image est vide, sinon lui attribuer une valeur
+if (empty($_FILES['image']['name'])) {
+    $img = NULL;
+} else {
+    $imageName = sanitarize($_FILES['image']['name']);
+    $imageInfo = pathinfo($imageName);
+    $imageExt = $imageInfo['extension'];
+
+    // Tableau qui spécifie les extensions autorisées
+    $authorizedExt = ['png', 'jpeg', 'jpg', 'webp', 'bmp', 'svg'];
+
+    // Vérification de l'extension du fichier
+    if (in_array($imageExt, $authorizedExt)) {
+        $img = time() . rand(1, 1000) . "." . $imageExt;
+        move_uploaded_file($_FILES['image']['tmp_name'], "../../../assets/img/" . $img );
+    } else {
+        echo 'Extension non autorisée.';
+        exit;
+    }
 }
 
 // Vérifier si le formulaire a été soumis
@@ -20,15 +40,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérifier que les champs requis sont remplis
     if (!empty($nom_creature) && !empty($description) && !empty($id_type_crea)) {
         // Préparer la requête d'insertion
-        $query = $bdd->prepare("INSERT INTO creature (nom_creature, description, id_type_crea, id_per , image) 
-                                VALUES (:nom_creature, :description, :id_type_crea, :id_per ,img)");
+        $query = $bdd->prepare("INSERT INTO creature (nom_creature, description, id_type_crea, id_per, image_creature) 
+                                VALUES (:nom_creature, :description, :id_type_crea, :id_per, :image)");
         $success = $query->execute([
             'nom_creature' => $nom_creature,
             'description' => $description,
             'id_type_crea' => $id_type_crea,
             'id_per' => $id_per,
-            'img'   => $img,
-
+            'image' => $img,
         ]);
 
         // Vérifier si l'insertion a réussi
@@ -40,36 +59,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $message = "Veuillez remplir tous les champs obligatoires.";
     }
-     //    Si le champ image est vide on lui attribut une valeur NULL
-     if(empty($_FILES['image'])){
-        $img = NULL;
-   }else{
-        $imageName = sanitarize($_FILES['image']['name']);
-        $imageInfo = pathinfo($imageName);
-        $imageExt = $imageInfo['extension'];
-        // Tableau qui va permettre de spécifier les extensions autorisées
-        $autorizedExt = ['png','jpeg','jpg','webp','bmp','svg'];
-
-        // Verification de l'extention du fichier
-
-        if(in_array($imageExt,$autorizedExt)){
-        $img = time() . rand(1,1000) . "." . $imageExt;
-        move_uploaded_file($_FILES['image']['tmp_name'],"../../assets/img/".$img);
-        
-        }else{
-            echo 'location:"\Projet_academie\index.php"';
-        }
-    }
 }
 ?>
 
-<?php include('../includes/head.php'); ?>
+<?php include('../../includes/head.php'); ?>
 
 <body>
-    
-    <?php include('../includes/nav.php') ?>
-
-
+    <?php include('../../includes/nav.php'); ?>
 
     <h1>Ajouter une Créature</h1>
 
@@ -79,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
     <!-- Formulaire pour ajouter une créature -->
-    <form action="addcreatures.php" method="POST">
+    <form action="addcreatures.php" method="POST" enctype="multipart/form-data">
         <label for="nom_creature">Nom de la Créature :</label>
         <input type="text" id="nom_creature" name="nom_creature" required>
 
@@ -93,7 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <option value="3">Mort Vivante</option>
             <option value="4">Mi-Bête</option>
         </select>
-        <label for="image">Choisissez une image</label>
+
+        <label for="image">Choisissez une image :</label>
         <input id="image" type="file" name="image">
 
         <button type="submit">Ajouter la Créature</button>

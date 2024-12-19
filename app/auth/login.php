@@ -16,6 +16,9 @@
         
         if(password_verify($password,$data['password'])){
             $_SESSION['userid']=$data['id_user'];
+            $_SESSION['roleid']=$data['id_rol'];
+
+
             header('Location:\Projet_academie\index.php');
         }else{
             header('location:login.php?error=1');

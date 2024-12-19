@@ -1,3 +1,4 @@
+<?php include('app/includes/function.php')?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +10,17 @@
 <?php include('app/includes/head.php'); ?>
 
 <?php include('app/includes/nav.php'); ?>
-
-
-<h2><a href="../app/action/creatures.php">les creatures</a></h2>
-<br>
-<h2><a href="../app/action/sorts.php">les sorts</a></h2>
-
-
+<h1>  Projet académie  </h1>
+<section class="cr-st">
+    <section class="cr">
+        <h2><a href="\Projet_academie\app\actions\creatures\creatures.php">les creatures</a></h2>
+        <img src="/Projet_academie/images_creatures/liste-des-animaux-légendaires-fantastiques-mythologiques-cerbere.jpg" alt="image-creature">
+    </section>
+    <section class="st">
+        <h2><a href="\Projet_academie\app\actions\sorts\sorts.php">les sorts</a></h2>
+        <img  src="/Projet_academie/images_sorts/Immolation.webp" alt="images_sorts">
+    </section>
+</section>
 </body>
 </html>
 

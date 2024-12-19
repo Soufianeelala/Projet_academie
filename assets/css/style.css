@@ -1,0 +1,178 @@
+
+body {
+    background-color: #000000;
+    color: antiquewhite;
+  
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-decoration: none ;
+    }
+    
+    
+
+
+nav ul {
+    color: rgb(82, 0, 0);
+    text-shadow: 
+    0 0 10px#ff9900,
+    0 0 13px#ff6600,
+    0 0 14px#ff3300,
+    0 0 15px#ff0000;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    list-style: none;
+    background-color: #160202;
+    font-size: 1.7rem;
+    width: 60%;
+    margin: auto;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: space-around;
+    height: 50px;
+}
+
+article {
+   
+    padding: 3rem;
+    text-shadow:50px;
+    width: 200px;
+    border: 15px solid #f346465d;
+    border-radius: 15%;
+    margin: 10px;
+    background-color: #d43737;
+    margin: auto;
+}
+ img{
+    width: 200px;
+    border-radius: 25%;
+}
+#img-index{
+    width: 40%;
+    border-radius: 25%;
+}
+article a{
+    
+        background-color:  #000e38;
+        color:aliceblue;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        cursor: pointer;
+        display: block;
+        margin:  auto;
+        width: 200px;
+        margin-top: 10px;
+        text-align: center;
+
+}
+article p{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-decoration: solid;
+    font-size: 1.2rem;
+     color:  #000e38;
+
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    padding: 1rem;
+    border: 2px solid red;
+    margin-top: 2rem;
+    margin-bottom: 20px;
+     margin: auto;
+   margin-top: 5rem;
+   background-color: #d43737;
+}
+
+form label {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+}
+
+form button {
+    background-color: #ccc;
+    color: #000e38;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+form button:hover {
+    background-color: #707d9f;
+}
+
+h1  {
+    text-align: center;
+    margin: 4rem;
+    color: rgb(82, 0, 0);
+    text-shadow: 
+    0 0 10px#ff9900,
+    0 0 13px#ff6600,
+    0 0 14px#ff3300,
+    0 0 15px#ff0000;
+    width: 550px;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    padding: 3rem;
+    font-size: 5rem;
+    font-style:italic;
+}
+h2 {
+    text-align: center;
+    margin: 1rem;
+    background-color: #ffffff;
+    color:  #000e38;
+    width: 150px;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    padding: 1rem;
+}
+
+.cr-st{
+    display: flex;
+    justify-content: center;
+    padding: 0px;
+    gap: 150px;
+}
+.cr{
+    display: flex;
+    flex-direction: column;
+}
+.st{
+    display: flex;
+    flex-direction: column;
+}
+.cr-st img {
+    width: 350px;
+    height: 400px;
+    border-radius: 25%;
+    margin: auto;
+}
